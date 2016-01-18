@@ -1,0 +1,96 @@
+body{
+font-size:14px;
+}
+#page_login{
+height:400px;
+margin:auto;
+position:absolute;
+top:50%;
+width:100%;
+margin-top:-200px;
+width:1170px;
+left:50%;
+margin-left:-585px
+}
+#loginForm{
+	font-size:14px;
+}
+#loginForm .btn-danger{
+	width:100%;
+	margin-top:20px;
+}
+.div_header .container{
+border-bottom: 1px solid #ECECEC;
+}
+
+h1{
+display:block;
+float:none;
+margin-bottom:50px;
+}
+.div_footer{
+position:fixed;
+bottom:0;
+width:100%;
+}
+label{
+font-weight:normal;
+}
+.form-horizontal .control-label{
+margin-bottom:5px;
+}
+#page_login .col-sm-5 b{
+	font-size:16px;
+	font-weight:normal;
+}
+#page_login .col-sm-5 p{
+	font-size:14px;
+}
+/*media*/
+@media screen and (max-width: 992px){
+    .div_pic{
+		display: block;
+	}
+	#page_login .div_loginform{
+		float:left;
+		width:auto;
+	}
+	.div_footer{display:none;}
+	#page_login{
+		width: 1170px;
+		left: inherit;
+		margin-left: 0;
+	}
+}
+@media screen and (max-width: 768px){
+	.div_pic {
+	    display: none;
+	}
+	#page_login{width: 370px;position: relative;margin: auto;left: 0;}
+	.col-sm-6{width:340px;}
+	h1{margin-bottom: 100px;padding-top: 50px;text-indent: 0;text-align: center;background: transparent;font-size: 34px;}
+	#loginBtton{width:100%;margin-top:20px;}
+	.container .col-sm-5{display:none;}
+	.btn-danger{width:100%;}
+	#page_login{
+		height:auto;
+		top:0;
+		width: 100%;
+		margin-top:10px;
+	}
+	#page_login br{
+		display:none;
+	}
+	#page_login .form-group,
+	#page_login .div_loginform{
+		width: 100%;
+		padding: 0;
+	}
+	#page_login .form-horizontal .form-group{
+		margin-right:0;
+		margin-left:0;
+	}
+	#loginForm .btn-danger{
+		margin-top:10px;
+	}
+}

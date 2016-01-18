@@ -7,6 +7,15 @@ public class WechatPlcmLoginResult {
 	private WechatPlcmRestUser user;
 	private String contextPath;
 	private String cookieDomain;
+	private String errorCode;
+
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
+	}
 
 	public String getCookieDomain() {
 		return cookieDomain;

@@ -8,6 +8,7 @@ public class WechatBindResult {
 	private String userType;
 	private String cookieDomain;
 	private String contextPath;
+	private String resultCode;
 
 	public WechatBindResult(String msUrl, String token, String loginName, String domainName, String userType,
 			String cookieDomain, String contextPath) {
@@ -19,9 +20,13 @@ public class WechatBindResult {
 		this.cookieDomain = cookieDomain;
 		this.contextPath = contextPath;
 	}
-
+	
 	public WechatBindResult() {
+		
+	}
 
+	public WechatBindResult(String resultCode) {
+		this.resultCode = resultCode;
 	}
 
 	public String getCookieDomain() {
@@ -78,6 +83,14 @@ public class WechatBindResult {
 
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+	
+	public String getResultCode() {
+		return resultCode;
+	}
+
+	public void setResultCode(String resultCode) {
+		this.resultCode = resultCode;
 	}
 
 }

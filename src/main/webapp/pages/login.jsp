@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 <meta name="description" content="">
-<title>Polycom® 汇视通微信绑定页面</title>
+<title>Polycom® {{'WECHAT_BIND.TITILE' | translate}}</title>
 <link rel="shortcut icon" href="${context}/images/favicon.ico" type="image/x-icon">
 <%-- <link rel="stylesheet" type="text/css" media="screen" href="${context}/lib/bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" media="screen" href="${context}/css/login.css"> --%>
@@ -29,16 +29,16 @@
 			<br /> <br /> <br />
 			<form id="loginForm" class="form-horizontal" role="form" ng-submit="processForm()" novalidate>
 				<div class="form-group col-sm-9" ng-class="{'has-error': showAccountError}">
-					<label for="account" class="control-label">User ID</label> 
-					<input type="text" name="account" placeholder="domain\username" class="form-control" maxlength="128" autofocus="autofocus" autocomplete="off" ng-model="formData.account" ng-change="hideErrorMessage()">
+					<label for="account" class="control-label" translate="{{'WECHAT_BIND.ACCOUNT'}}"></label>
+					<input type="text" name="account" placeholder="{{'WECHAT_BIND.PLACEHOLDER_ACCOUNT' | translate}}" class="form-control" maxlength="128" autofocus="autofocus" autocomplete="off" ng-model="formData.account" ng-change="hideErrorMessage()">
 				</div>
 				<div class="form-group col-sm-9" ng-class="{'has-error': showPasswordError}">
-					<label for="password" class="control-label">Password</label>
-                    <input type="password" name="password" placeholder="Password" class="form-control" autocomplete="off" ng-model="formData.password" ng-change="hideErrorMessage()">
+					<label for="password" class="control-label" translate="{{'WECHAT_BIND.PASSWORD'}}"></label>
+                    <input type="password" name="password" placeholder="{{'WECHAT_BIND.PLACEHOLDER_PASSWORD' | translate}}" class="form-control" autocomplete="off" ng-model="formData.password" ng-change="hideErrorMessage()">
                     <input type="hidden" name="msurl" value="${requestScope.msurl}" ng-init="formData.msurl='${requestScope.msurl}'">
 				</div>
 				<div class="form-group col-sm-9">
-				    <button type="submit" class="btn btn-danger" style="margin-bottom:20px;">Bind Wechat</button>
+				    <button type="submit" class="btn btn-danger" style="margin-bottom:20px;" translate="{{'WECHAT_BIND.BIND_BUTTON'}}"></button>
 				</div>
 				<div class="form-group col-sm-9">
 				    <div class="error_info" ng-show="showErrorMessage" ng-bind="loginErrorMessage"></div>

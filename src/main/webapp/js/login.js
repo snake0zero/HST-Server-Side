@@ -4,10 +4,25 @@
 
 'use strict';
 
-var wechatBindApp = angular.module('wechatBindApp',['commonModule']);
+    var wechatBindApp = angular.module('wechatBindApp',['commonModule', 'ngCookies', 'pascalprecht.translate']);
 
-wechatBindApp.controller('wechatBindApp.bindCtrl', ['$scope', '$http', 'commonModule.updateQuerySrv',
-    function($scope, $http, updateQuerySrv){
+wechatBindApp.config(function($translateProvider){
+    $translateProvider.useStaticFilesLoader({
+        prefix: window.contextPath + '/i18n/hst-wechat-',
+        suffix: '.json?v=2.5'
+    });
+    $translateProvider.preferredLanguage('en_US');
+    $translateProvider.fallbackLanguage('en_US');
+    $translateProvider.useLocalStorage();
+});
+
+wechatBindApp.controller('wechatBindApp.bindCtrl',
+    [
+        '$scope',
+        '$http',
+        'commonModule.updateQuerySrv',
+        '$filter',
+    function($scope, $http, updateQuerySrv, $filter){
     $scope.formData = {};
     $scope.showErrorMessage = false;
     $scope.showAccountError = false;
@@ -18,7 +33,7 @@ wechatBindApp.controller('wechatBindApp.bindCtrl', ['$scope', '$http', 'commonMo
         if (!$scope.formData.account || !$scope.formData.account.trim()){
             $scope.showAccountError = true;
             $scope.showErrorMessage = true;
-            $scope.loginErrorMessage = 'User ID cannot be empty';
+            $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.USER_ID_EMPTY');
             $scope.showErrorMessage = !!$scope.loginErrorMessage;
             return;
         }
@@ -26,7 +41,7 @@ wechatBindApp.controller('wechatBindApp.bindCtrl', ['$scope', '$http', 'commonMo
         if (!$scope.formData.password || !$scope.formData.password.trim()){
             $scope.showPasswordError = true;
             $scope.showErrorMessage = true;
-            $scope.loginErrorMessage = 'Password cannot be empty';
+            $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.PASSWORD_EMPTY');
             $scope.showErrorMessage = !!$scope.loginErrorMessage;
             return;
         }
@@ -52,9 +67,22 @@ wechatBindApp.controller('wechatBindApp.bindCtrl', ['$scope', '$http', 'commonMo
                 top.window.location.replace((new updateQuerySrv(data.msUrl)).updateQuery('token', token).updateQuery('userId', userId).getUrl());
             }
 
-        },function(){
+        },function(data){
+            switch(data.status){
+                case 403:
+                    $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.NOT_ENOUGH_PERMISSION');
+                    break;
+                case 803:
+                    $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.USER_LOCKED');
+                    break;
+                case 804:
+                    $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.USER_ID_OR_PASSWORD_ERROR');
+                    break;
+                default:
+                    $scope.loginErrorMessage = 'Server Error';
+                    break;
+            }
             console.log("Server Error!");
-            $scope.loginErrorMessage = 'Server Error';
             $scope.showErrorMessage = !!$scope.loginErrorMessage;
         });
     };

@@ -43,13 +43,15 @@ public class HstWechatBindServlet extends AbstractAutowireHttpServlet {
 
 		log.info("use this openid: ({}) to bind ms.", openid);
 		log.info("ms url is: ({})", msUrl);
+		
+		resp.setContentType("application/json;charset=utf8");
+		
 		if (!Strings.isNullOrEmpty(openid) && hst2MSAuthService != null) {
 			//binding ms account
 			WechatPlcmLoginResult result = hst2MSAuthService.login(openid, account, password);
 			//resp.sendRedirect(resp.encodeRedirectURL(msUrl));
 			if (!Strings.isNullOrEmpty(result.getToken())) {
 				resp.setStatus(HttpServletResponse.SC_OK);
-				resp.setContentType("application/json;charset=utf8");
 				
 				// write cookie
 				HttpKit.addCookie(req, resp, result.getCookieDomain(), result.getContextPath(), TOKEN,
@@ -63,7 +65,16 @@ public class HstWechatBindServlet extends AbstractAutowireHttpServlet {
 								result.getCookieDomain(), result.getContextPath())));
 			} else {
 				// Media suite login failure.
-				resp.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
+				if (!Strings.isNullOrEmpty(result.getErrorCode())) {
+					try {
+						Integer code = Integer.valueOf(result.getErrorCode());
+						resp.setStatus(code);
+					} catch (NumberFormatException e) {
+						resp.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
+					}
+				} else {
+					resp.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
+				}
 			}
 
 		} else {

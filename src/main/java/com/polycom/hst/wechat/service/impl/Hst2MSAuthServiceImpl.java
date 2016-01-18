@@ -15,6 +15,8 @@ import java.security.NoSuchProviderException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -47,6 +49,7 @@ public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 	private static final Logger log = LoggerFactory.getLogger(Hst2MSAuthServiceImpl.class);
 	private List<HstAuthModel> repos;
 	private File targetFile;
+	private Pattern pattern = Pattern.compile("-?\\d+");
 	@Autowired
 	private WechatConfigService wechatConfigService;
 
@@ -157,6 +160,12 @@ public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 		} catch (KeyManagementException | NoSuchAlgorithmException | NoSuchProviderException | IOException e) {
 			log.error("Exception from Media suite: ({})", e);
 			e.printStackTrace();
+			if (!Strings.isNullOrEmpty(e.getMessage())) {
+				Matcher m = pattern.matcher(e.getMessage());
+				while (m.find()) {
+					result.setErrorCode(m.group());
+				}
+			}
 		}
 		return result;
 	}

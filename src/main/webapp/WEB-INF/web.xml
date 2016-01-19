@@ -1,7 +1,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
 	<display-name>Polycom Wechat Application</display-name>
 	<!-- Spring -->
 	<context-param>
@@ -36,6 +36,7 @@
 	<filter>
 		<filter-name>qrcodeAuthFilter</filter-name>
 		<filter-class>com.polycom.hst.wechat.filter.HstWechatAuthzQRCodeFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>qrcodeAuthFilter</filter-name>
@@ -46,6 +47,7 @@
 	<filter>
 		<filter-name>baseAuthFilter</filter-name>
 		<filter-class>com.polycom.hst.wechat.filter.HstWechatAuthzBaseFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>baseAuthFilter</filter-name>
@@ -56,6 +58,7 @@
 	<filter>
 		<filter-name>loginAuthFilter</filter-name>
 		<filter-class>com.polycom.hst.wechat.filter.HstWechatAuthzLoginFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>loginAuthFilter</filter-name>
@@ -66,6 +69,7 @@
 	<filter>
 		<filter-name>userAuthFilter</filter-name>
 		<filter-class>com.polycom.hst.wechat.filter.HstWechatAuthzUserFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>userAuthFilter</filter-name>
@@ -76,6 +80,7 @@
 	<filter>
 		<filter-name>msAuthFilter</filter-name>
 		<filter-class>com.polycom.hst.wechat.filter.HstMsAuthFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>msAuthFilter</filter-name>

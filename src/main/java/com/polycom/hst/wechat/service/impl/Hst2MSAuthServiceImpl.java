@@ -15,6 +15,7 @@ import java.security.NoSuchProviderException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +48,7 @@ import static com.polycom.hst.wechat.constant.WechatConstant.*;
 @Service
 public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 	private static final Logger log = LoggerFactory.getLogger(Hst2MSAuthServiceImpl.class);
-	private List<HstAuthModel> repos;
+	private CopyOnWriteArrayList<HstAuthModel> repos;
 	private File targetFile;
 	private Pattern pattern = Pattern.compile("-?\\d+");
 	@Autowired
@@ -60,14 +61,10 @@ public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 
 	@Override
 	public boolean saveAuthInfo(String openid, String userid) {
-		synchronized (repos) {
-			HstAuthModel existAccount = getModelByOpenid(openid);
-			if (existAccount == null)
-				repos.add(new HstAuthModel(openid, userid));
-			else
-				existAccount.setUserid(userid);
-		}
-		return writeRepository();
+		if(repos.addIfAbsent(new HstAuthModel(openid, userid)))
+			return writeRepository();
+		else 
+			return false;
 	}
 
 	@Override
@@ -88,15 +85,14 @@ public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 			saveAuthInfo(openid, MSUtils.getUserId(result.getUser()));
 
 		return result;
-
 	}
 
 	@Override
 	public boolean deleteAuthByOpenid(String openid) {
-		synchronized(repos){
-			 repos.remove(new HstAuthModel(openid));
-		}
-		return writeRepository();
+		if (repos.remove(new HstAuthModel(openid)))
+			return writeRepository();
+		else
+			return false;
 	}
 
 	@PostConstruct
@@ -104,12 +100,12 @@ public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 		String jsonStr = readRepository();
 		if (!Strings.isNullOrEmpty(jsonStr)) {
 			Gson gson = new Gson();
-			Type listType = new TypeToken<List<HstAuthModel>>() {
+			Type listType = new TypeToken<CopyOnWriteArrayList<HstAuthModel>>() {
 			}.getType();
 			repos = gson.fromJson(jsonStr, listType);
 		}
 		if (repos == null)
-			repos = Lists.newLinkedList();
+			repos = Lists.newCopyOnWriteArrayList();
 	}
 
 	@PreDestroy

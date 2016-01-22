@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <%@ include file="common.jsp" %>
 <!doctype html>
-<html>
+<html ng-app="wechatBindApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -20,7 +20,7 @@
 	}
 </script>
 </head>
-<body ng-app="wechatBindApp">
+<body>
 	<div class="container" id="page_login" ng-controller="wechatBindApp.bindCtrl">
         <div class="col-sm-5 left div_pic">
             <img src="${context}/images/login_pic.png" onload="this.onload=null; this.src=getLatestLoginImage();" style="width:445px;"/>

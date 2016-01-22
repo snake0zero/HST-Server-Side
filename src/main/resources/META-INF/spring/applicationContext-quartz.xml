@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Thread Pool -->
+	<bean id="hstQuartzThreadPool"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="1" />
+		<property name="maxPoolSize" value="10" />
+		<property name="queueCapacity" value="512" />
+		<property name="keepAliveSeconds" value="7200" />
+		<property name="rejectedExecutionHandler">
+			<bean
+				class="com.polycom.hst.wechat.utils.schedule.WechatAccessRejectedExecutionHandler" />
+		</property>
+	</bean>
+	<!-- Quartz schedule -->
+	<bean lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="schedulerName" value="wechatMultiScheduler"/>
+		<property name="triggers">
+			<list>
+  				<ref bean="updateMPAccessTokenSimpleSchedule" />
+			</list>
+		</property>
+		<property name="startupDelay" value="0" />
+		<property name="taskExecutor" ref="hstQuartzThreadPool" />
+	</bean>
+	<bean id="updateMPAccessTokenCronSchedule" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="updateMPAccessTokenTask" />
+		<property name="cronExpression">
+			<value>0 0 0/2 * * ?</value>
+		</property>
+	</bean>
+	<bean id="updateMPAccessTokenSimpleSchedule" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="updateMPAccessTokenTask" />
+		<!-- begin to get access token after 20 seconds -->
+		<property name="startDelay" value="20000"/>
+		<property name="repeatInterval" value="7200000"/>
+	</bean>
+
+	<bean id="updateMPAccessTokenTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="updateMPAccessTokenJob" />
+		<property name="targetMethod" value="execute" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="updateMPAccessTokenJob" class="com.polycom.hst.wechat.utils.schedule.UpdateMpAccessTokenJob" />  
+</beans>

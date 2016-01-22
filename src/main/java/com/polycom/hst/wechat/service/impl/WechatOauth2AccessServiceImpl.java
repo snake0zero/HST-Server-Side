@@ -32,10 +32,11 @@ public class WechatOauth2AccessServiceImpl implements WechatOauth2AccessService 
 			return new WechatSnsToken();
 
 		String url = String.format(WechatUrl.GET_USER_TOKEN_URL,
-				wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_APPID),
-				wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_APPSECRET), code);
+				wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_OPEN_APPID),
+				wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_OPEN_APPSECRET), code);
 
 		try {
+			log.info("Getting user access token from ({})", url);
 			String tokenStr = HttpKit.get(url);
 			log.info("response for getting access token: ({})", tokenStr);
 			return new Gson().fromJson(tokenStr, WechatSnsToken.class);
@@ -52,7 +53,7 @@ public class WechatOauth2AccessServiceImpl implements WechatOauth2AccessService 
 			new WechatSnsToken();
 
 		String url = String.format(WechatUrl.REFRESH_USER_TOKEN_URL,
-				wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_APPID), refreshToken);
+				wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_OPEN_APPID), refreshToken);
 
 		try {
 			String tokenStr = HttpKit.get(url);

@@ -36,7 +36,7 @@ public class WechatUrlServiceImpl implements WechatUrlService {
 			break;
 		}
 		if (!Strings.isNullOrEmpty(url) && wechatConfigService != null)
-			return String.format(url, wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_APPID),
+			return String.format(url, wechatConfigService.getWechatConfigByKey(WechatConfigKey.WECHAT_OPEN_APPID),
 					redirectUri);
 		else
 			return null;

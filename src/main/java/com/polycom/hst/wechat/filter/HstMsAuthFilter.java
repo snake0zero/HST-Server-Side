@@ -63,9 +63,8 @@ public class HstMsAuthFilter extends AbstractAutowireAware implements Filter {
 		} else if (!Strings.isNullOrEmpty(code) && wechatOauth2AccessService != null) {
 			// whether code is authorized by wechat server.
 			WechatSnsToken token = wechatOauth2AccessService.getAccessTokensByCode(code);
-			//TODO
 			//Test
-			token.setOpenid("13");
+			/*token.setOpenid("13");*/
 			openid = token.getOpenid();
 			if (!Strings.isNullOrEmpty(openid)) {
 				Map<String, String> wechatMap = Maps.newHashMap();

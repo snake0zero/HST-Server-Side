@@ -6,15 +6,15 @@
 
     var wechatBindApp = angular.module('wechatBindApp',['commonModule', 'ngCookies', 'pascalprecht.translate']);
 
-wechatBindApp.config(function($translateProvider){
+wechatBindApp.config(["$translateProvider", function($translateProvider){
     $translateProvider.useStaticFilesLoader({
         prefix: window.contextPath + '/i18n/hst-wechat-',
         suffix: '.json?v=2.5'
     });
-    $translateProvider.preferredLanguage('en_US');
+    $translateProvider.preferredLanguage('zh_CN');
     $translateProvider.fallbackLanguage('en_US');
     $translateProvider.useLocalStorage();
-});
+}]);
 
 wechatBindApp.controller('wechatBindApp.bindCtrl',
     [

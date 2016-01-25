@@ -21,6 +21,8 @@
 		<spring.version>4.1.1.RELEASE</spring.version>
 		<commons-codec.version>1.10</commons-codec.version>
 		<jawr.version>[3,]</jawr.version>
+		<closure.version>v20150609</closure.version>
+		<yui.version>2.2.5</yui.version>
 		<version.aspectj>1.7.4</version.aspectj>
 		<version.quartz>2.2.2</version.quartz>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -140,20 +142,31 @@
 		</dependency>
 		<!-- Quartz Setting -->
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <version>${version.quartz}</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${version.quartz}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-api</artifactId>
 					<groupId>org.slf4j</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<!-- JavaScript Minification -->
+		<!-- <dependency>
+			<groupId>com.google.javascript</groupId>
+			<artifactId>closure-compiler</artifactId>
+			<version>${closure.version}</version>
+		</dependency> -->
+		<dependency>
+            <groupId>com.yahoo.platform.yui</groupId>
+            <artifactId>yuicompressor</artifactId>
+            <version>${yui.version}</version>
         </dependency>
 	</dependencies>
 	<build>

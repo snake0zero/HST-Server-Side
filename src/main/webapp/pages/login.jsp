@@ -11,6 +11,7 @@
 <link rel="shortcut icon" href="${context}/images/favicon.ico" type="image/x-icon">
 <%-- <link rel="stylesheet" type="text/css" media="screen" href="${context}/lib/bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" media="screen" href="${context}/css/login.css"> --%>
+<%-- <jwr:style src="/bundles/thirdparth.css" /> --%>
 <jwr:style src="/bundles/wechatbind.css" />
 <%-- <script type="text/javascript" src="${context}/lib/jquery/jquery-2.1.4/jquery-2.1.4.min.js"></script> --%>
 <script>
@@ -51,5 +52,6 @@
 <%-- <script type="text/javascript" src="${context}/lib/angularjs/angular-1.5.0-rc.0/angular.min.js"></script>
 <script type="text/javascript" src="${context}/js/common.js"></script>
 <script type="text/javascript" src="${context}/js/login.js"></script> --%>
+<%-- <jwr:script src="/bundles/thirdparth.js"/>  --%>
 <jwr:script src="/bundles/wechatbind.js"/> 
 </html>

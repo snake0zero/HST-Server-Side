@@ -42,8 +42,9 @@ abstract public class AbstractWechatAuthFilter extends AbstractAutowireAware imp
 	protected String getHST2MSAuthUrl(HttpServletRequest httpReq, HttpServletResponse httpResp, String redirectUri)
 			throws UnsupportedEncodingException {
 		if (!Strings.isNullOrEmpty(redirectUri)) {
-			String uri = httpReq.getScheme() + "://" + httpReq.getServerName() + ":" + httpReq.getServerPort()
-					+ httpReq.getContextPath() + AUTH_MS_SERVLET + "/" + MS_REDIRECT_URL_PARAM + "="
+			String uri = httpReq.getScheme() + "://" + httpReq.getServerName()
+					+ (80 == httpReq.getServerPort() ? "" : (":" + httpReq.getServerPort())) + httpReq.getContextPath()
+					+ AUTH_MS_SERVLET + "/" + MS_REDIRECT_URL_PARAM + "="
 					+ URLEncoder.encode(URLDecoder.decode(redirectUri, UTF8), UTF8).replaceAll("%2F", "/");
 			return httpResp.encodeRedirectURL(uri);
 		} else {

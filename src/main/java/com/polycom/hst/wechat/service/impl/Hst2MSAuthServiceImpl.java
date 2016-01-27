@@ -129,6 +129,8 @@ public class Hst2MSAuthServiceImpl implements Hst2MSAuthService {
 		
 		encrytTgt = String.format(encrytTgt, ssoUserId, userid, ssoId, ssoPwd, msUrl);
 		
+		log.info("Plain string of SSO login is: ({})", encrytTgt);
+		
 		return String.format(scheme + "://" + domain + contextPath + ssoUrl, AES.encrypt(encrytTgt, ssoAseKey));
 	}
 	

@@ -1,6 +1,6 @@
 {
   "WECHAT_BIND":{
-    "TITILE" : "HST Wechat Bind Page",
+    "TITLE" : "HST Wechat Bind Page",
     "ACCOUNT" : "User ID",
     "PLACEHOLDER_ACCOUNT" : "domain\\username",
     "PASSWORD" : "Password",
@@ -11,5 +11,10 @@
     "USER_ID_OR_PASSWORD_ERROR" : "User ID or password is wrong. Check it again.",
     "NOT_ENOUGH_PERMISSION" : "Not enough permission.",
     "USER_LOCKED" : "The user is locked."
+  },
+  "WECHAT_ERROR":{
+    "TITLE" : "Error Page",
+    "SSO_MSG" : "Media Suite login failure!",
+    "OAUTH_MSG" : "Wechat authorization failure!"
   }
 }

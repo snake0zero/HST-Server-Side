@@ -117,12 +117,14 @@ public class HstMsAuthFilter extends AbstractAutowireAware implements Filter {
 					} catch (URISyntaxException e) {
 						// SSO URL Syntax error, need to show error page.
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/error.jsp");
+						request.setAttribute(ERROR_MSG, ERROR_SSO_MSG);
 						dispatcher.forward(request, response);
 					}
 
 				} else {
 					// SSO URL Syntax error, need to show error page.
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/error.jsp");
+					request.setAttribute(ERROR_MSG, ERROR_SSO_MSG);
 					dispatcher.forward(request, response);
 				}
 				
@@ -137,6 +139,7 @@ public class HstMsAuthFilter extends AbstractAutowireAware implements Filter {
 		} else {
 			// no open id, need to show error page.
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/error.jsp");
+			request.setAttribute(ERROR_MSG, ERROR_OAUTH_MSG);
 			dispatcher.forward(request, response);
 		}
 	}

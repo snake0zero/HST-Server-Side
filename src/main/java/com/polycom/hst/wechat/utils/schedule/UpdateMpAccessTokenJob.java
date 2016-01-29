@@ -27,6 +27,7 @@ public class UpdateMpAccessTokenJob {
 					break;
 				} else {
 					try {
+						log.info("Getting access token failure, need to re-execute after 5 seconds.");
 						Thread.sleep(NO_ACCESS_TOKEN_TIMEOUT);
 					} catch (InterruptedException e) {
 						log.info("The thread that is getting access token is interrupted.");

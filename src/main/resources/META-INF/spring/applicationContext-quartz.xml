@@ -33,8 +33,8 @@
 	</bean>
 	<bean id="updateMPAccessTokenSimpleSchedule" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		<property name="jobDetail" ref="updateMPAccessTokenTask" />
-		<!-- begin to get access token after 20 seconds -->
-		<property name="startDelay" value="20000"/>
+		<!-- begin to get access token after 30 seconds -->
+		<property name="startDelay" value="30000"/>
 		<property name="repeatInterval" value="7200000"/>
 	</bean>
 

@@ -25,6 +25,7 @@
 		<yui.version>2.2.5</yui.version>
 		<version.aspectj>1.7.4</version.aspectj>
 		<version.quartz>2.2.2</version.quartz>
+		<less4j.version>1.14.0</less4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -140,6 +141,11 @@
 			<artifactId>jawr-core</artifactId>
 			<version>${jawr.version}</version>
 		</dependency>
+	    <dependency>
+		    <groupId>com.github.sommeri</groupId>
+		    <artifactId>less4j</artifactId>
+		    <version>${less4j.version}</version>
+	    </dependency>
 		<!-- Quartz Setting -->
 		<dependency>
 			<groupId>org.springframework</groupId>

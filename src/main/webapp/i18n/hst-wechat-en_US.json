@@ -5,12 +5,14 @@
     "PLACEHOLDER_ACCOUNT" : "domain\\username",
     "PASSWORD" : "Password",
     "PLACEHOLDER_PASSWORD" : "Password",
-    "BIND_BUTTON" : "Bind Wechat",
+    "BIND_BUTTON" : "Confirm Bind",
     "USER_ID_EMPTY" : "User ID cannot be empty.",
     "PASSWORD_EMPTY" : "Password cannot be empty.",
     "USER_ID_OR_PASSWORD_ERROR" : "User ID or password is wrong. Check it again.",
     "NOT_ENOUGH_PERMISSION" : "Not enough permission.",
-    "USER_LOCKED" : "The user is locked."
+    "USER_LOCKED" : "The user is locked.",
+    "HINT_MSG" : "Please bind your account and password for the first access",
+    "SUCCESS_MSG" : "Bind Success！"
   },
   "WECHAT_ERROR":{
     "TITLE" : "Error Page",

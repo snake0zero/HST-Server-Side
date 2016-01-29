@@ -66,7 +66,12 @@ wechatBindApp.controller('wechatBindApp.bindCtrl',
                 document.cookie = ("token=" + token + "; path=" + data.contextPath + "; domain=" + data.cookieDomain);
                 var url = (new updateQuerySrv(data.msUrl)).updateQuery('token', token).updateQuery('userId', userId).getUrl();
                 console.log(url);
-                top.window.location.replace(url);
+                var toast = $('#toast');
+                toast.show();
+                setTimeout(function(){
+                    toast.hide();
+                    top.window.location.replace(url);
+                },2000);
             }
 
         },function(data){

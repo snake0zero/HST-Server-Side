@@ -131,7 +131,7 @@ public class HstMsAuthFilter extends AbstractAutowireAware implements Filter {
 				
 			} else {
 				// need to bind wechat
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/newlogin.jsp");
 				// set target url for login page.
 				request.setAttribute(MS_REDIRECT_URL_PARAM, msUrl);
 				dispatcher.forward(request, response);

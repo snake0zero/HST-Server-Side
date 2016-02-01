@@ -27,7 +27,7 @@
 	<div class="col-sm-5 left div_pic">
 	<img src="${context}/images/login_pic.png" onload="this.onload=null; this.src=getLatestLoginImage();" style="width:445px;"/>
 	</div>
-		<div id="loginForm" style="margin-top: 70px;"
+		<div id="loginForm" style="margin-top: 50px;"
 			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<div>
 				<div class="hst-wechat-panel-heading">
@@ -44,14 +44,14 @@
 	                       <div class="input-group" ng-class="{'hasWechatError': showAccountError}">
 	                          <span class="input-group-addon"><i class="glyphicon wechat-bind-user"></i></span>
 	                          <input id="login-username" type="text" maxlength="25" class="form-control" name="account" autofocus="autofocus" autocomplete="off" placeholder="{{'WECHAT_BIND.PLACEHOLDER_ACCOUNT' | translate}}" ng-model="formData.account" ng-change="hideErrorMessage()">
-	                          <span ng-show="!!formData.account && !!formData.account.trim()" ng-click="formData.account = ''" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
+	                          <span ng-show="!!formData.account && !!formData.account.trim()" ng-click="formData.account = '';focusOnTarget('login-username')" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
 	                       </div>
 	                       <div class="input-border"></div>
 	                       <div class="input-group" ng-class="{'hasWechatError': showPasswordError}">
 	                         <span class="input-group-addon"><i class="glyphicon wechat-bind-lock"></i></span>
 	                         <input id="login-password"type="password" maxlength="25" class="form-control" name="password" autocomplete="off" placeholder="{{'WECHAT_BIND.PLACEHOLDER_PASSWORD' | translate}}" ng-model="formData.password" ng-change="hideErrorMessage()">
 	                         <input type="hidden" name="msurl" value="${requestScope.msurl}" ng-init="formData.msurl='${requestScope.msurl}'">
-	                         <span ng-show="!!formData.password && !!formData.password.trim()" ng-click="formData.password = ''" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
+	                         <span ng-show="!!formData.password && !!formData.password.trim()" ng-click="formData.password = '';focusOnTarget('login-password')" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
 	                      </div>
 	                    </div>
 	                    <div class="hint-msg">
@@ -59,7 +59,7 @@
 	                    </div>
 						<div style="margin: 15px">
 							<!-- Button -->
-	                        <button type="submit" class="btn wechat-bind-btn" style="margin-bottom:20px;" translate="{{'WECHAT_BIND.BIND_BUTTON'}}"></button>
+	                        <button type="submit" class="btn wechat-bind-btn" style="margin-bottom:20px;" translate="{{'WECHAT_BIND.BIND_BUTTON'}}" ng-disabled="disableBindBtn"></button>
 						</div>
 						<div class="form-group" style="width: 100%;">
 							<div class="col-md-12 control">

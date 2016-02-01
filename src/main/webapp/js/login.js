@@ -27,14 +27,20 @@ wechatBindApp.controller('wechatBindApp.bindCtrl',
     $scope.showErrorMessage = false;
     $scope.showAccountError = false;
     $scope.showPasswordError = false;
+    $scope.disableBindBtn = false;
     $scope.loginErrorMessage = '';
 
     $scope.processForm = function(){
+        $scope.showErrorMessage = false;
+        $scope.showAccountError = false;
+        $scope.showPasswordError = false;
+        $scope.disableBindBtn = true;
         if (!$scope.formData.account || !$scope.formData.account.trim()){
             $scope.showAccountError = true;
             $scope.showErrorMessage = true;
             $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.USER_ID_EMPTY');
             $scope.showErrorMessage = !!$scope.loginErrorMessage;
+            $scope.disableBindBtn = false;
             return;
         }
 
@@ -43,6 +49,7 @@ wechatBindApp.controller('wechatBindApp.bindCtrl',
             $scope.showErrorMessage = true;
             $scope.loginErrorMessage = $filter('translate')('WECHAT_BIND.PASSWORD_EMPTY');
             $scope.showErrorMessage = !!$scope.loginErrorMessage;
+            $scope.disableBindBtn = false;
             return;
         }
 
@@ -91,9 +98,13 @@ wechatBindApp.controller('wechatBindApp.bindCtrl',
             }
             console.log("Server Error!");
             $scope.showErrorMessage = !!$scope.loginErrorMessage;
+            $scope.disableBindBtn = false;
         });
     };
     $scope.hideErrorMessage = function(){
         $scope.showErrorMessage = false;
     };
+    $scope.focusOnTarget = function(targetId){
+        $('#' + targetId).focus();
+    }
 }]);

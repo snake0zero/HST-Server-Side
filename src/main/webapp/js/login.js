@@ -9,11 +9,11 @@
 wechatBindApp.config(["$translateProvider", function($translateProvider){
     $translateProvider.useStaticFilesLoader({
         prefix: window.contextPath + '/i18n/hst-wechat-',
-        suffix: '.json?v=2.5'
+        suffix: '.json?v=2.5&clear=' + new Date().getTime()
     });
     $translateProvider.preferredLanguage('zh_CN');
     $translateProvider.fallbackLanguage('en_US');
-    $translateProvider.useLocalStorage();
+    //$translateProvider.useLocalStorage();
 }]);
 
 wechatBindApp.controller('wechatBindApp.bindCtrl',

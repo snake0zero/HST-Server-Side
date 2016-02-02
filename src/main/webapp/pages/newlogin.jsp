@@ -41,18 +41,20 @@
 
 					<form id="loginform" class="form-horizontal" role="form" ng-submit="processForm()" novalidate>
 	                    <div class="input-set">
-	                       <div class="input-group" ng-class="{'hasWechatError': showAccountError}">
+	                       <!--<div class="input-group" ng-class="{'hasWechatError': showAccountError}">
 	                          <span class="input-group-addon"><i class="glyphicon wechat-bind-user"></i></span>
 	                          <input id="login-username" type="text" maxlength="25" class="form-control" name="account" autofocus="autofocus" autocomplete="off" placeholder="{{'WECHAT_BIND.PLACEHOLDER_ACCOUNT' | translate}}" ng-model="formData.account" ng-change="hideErrorMessage()">
 	                          <span ng-show="!!formData.account && !!formData.account.trim()" ng-click="formData.account = '';focusOnTarget('login-username')" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
-	                       </div>
+	                       </div>-->
+	                       <login-input error-flag="showAccountError" type="text" icon="wechat-bind-user" place-holder="{{'WECHAT_BIND.PLACEHOLDER_ACCOUNT' | translate}}" bind="formData.account" content-change="hideErrorMessage()" add-callback="addCallbacks('ACCOUNT' ,focus)" auto-focus="true"></login-input>
 	                       <div class="input-border"></div>
-	                       <div class="input-group" ng-class="{'hasWechatError': showPasswordError}">
+	                       <!--<div class="input-group" ng-class="{'hasWechatError': showPasswordError}">
 	                         <span class="input-group-addon"><i class="glyphicon wechat-bind-lock"></i></span>
 	                         <input id="login-password"type="password" maxlength="25" class="form-control" name="password" autocomplete="off" placeholder="{{'WECHAT_BIND.PLACEHOLDER_PASSWORD' | translate}}" ng-model="formData.password" ng-change="hideErrorMessage()">
-	                         <input type="hidden" name="msurl" value="${requestScope.msurl}" ng-init="formData.msurl='${requestScope.msurl}'">
 	                         <span ng-show="!!formData.password && !!formData.password.trim()" ng-click="formData.password = '';focusOnTarget('login-password')" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
-	                      </div>
+	                       </div>-->
+	                       <login-input error-flag="showPasswordError" type="password" icon="wechat-bind-lock" place-holder="{{'WECHAT_BIND.PLACEHOLDER_PASSWORD' | translate}}" bind="formData.password" content-change="hideErrorMessage()" add-callback="addCallbacks('PASSWORD' ,focus)"></login-input>
+	                       <input type="hidden" name="msurl" value="${requestScope.msurl}" ng-init="formData.msurl='${requestScope.msurl}'">
 	                    </div>
 	                    <div class="hint-msg">
 	                        <span translate="{{'WECHAT_BIND.HINT_MSG'}}"></span>

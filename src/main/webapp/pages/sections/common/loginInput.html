@@ -1,0 +1,5 @@
+<div class="input-group" ng-class="{'hasWechatError': errorFlag}">
+    <span class="input-group-addon"><i class="glyphicon {{icon}}"></i></span>
+    <input type="{{type}}" maxlength="25" class="form-control" autocomplete="off" placeholder="{{placeHolder}}" ng-model="bind" ng-change="contentChange()">
+    <span ng-show="!!bind && !!bind.trim()" ng-click="delProcess()" class="input-group-addon"><i class="glyphicon wechat-bind-del"></i></span>
+</div>
